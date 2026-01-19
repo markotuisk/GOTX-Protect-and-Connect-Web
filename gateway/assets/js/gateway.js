@@ -44,6 +44,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -----------------------------------------------------------
+    // CONTACT FORM SUBMISSION
+    // -----------------------------------------------------------
+    const gatewayForm = document.getElementById('gatewayForm');
+
+    if (gatewayForm) {
+        gatewayForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = gatewayForm.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+
+            // UI: Loading State
+            submitBtn.textContent = 'Encrypting Transmission...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+
+            const payload = {
+                name: document.getElementById('gw-name').value.trim(),
+                email: document.getElementById('gw-email').value.trim(),
+                message: document.getElementById('gw-message').value.trim(),
+                identity: 'GATEWAY_USER'
+            };
+
+            try {
+                // In local dev, we might encounter 404 if functions aren't running.
+                // We'll gracefully handle that or simulate success if on file protocol.
+                let success = false;
+
+                if (window.location.protocol === 'file:' || window.location.hostname === '127.0.0.1') {
+                    // Simulation for local dev without Wrangler
+                    await new Promise(r => setTimeout(r, 1500));
+                    console.log('Simulated Submit:', payload);
+                    success = true;
+                } else {
+                    const response = await fetch('/api/submit', { // Absolute path for Cloudflare Pages
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) success = true;
+                    else {
+                        const err = await response.json();
+                        alert('Transmission Error: ' + (err.error || 'Unknown Secure Error'));
+                    }
+                }
+
+                if (success) {
+                    submitBtn.textContent = 'Transmission Confirmed';
+                    submitBtn.style.color = '#00ff41'; // Matrix Green
+                    submitBtn.style.borderColor = '#00ff41';
+
+                    setTimeout(() => {
+                        gatewayForm.reset();
+                        contactOverlay.classList.remove('active');
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.color = '';
+                        submitBtn.style.borderColor = '';
+                        submitBtn.style.opacity = '1';
+                    }, 2000);
+                }
+
+            } catch (error) {
+                console.error('Network Error:', error);
+                alert('Secure Channel Verification Failed. Please check your connection.');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            }
+        });
+    }
+
+    // -----------------------------------------------------------
     // PARTICLE BACKGROUND & ANIMATION
     // -----------------------------------------------------------
     const canvas = document.getElementById('particle-canvas');

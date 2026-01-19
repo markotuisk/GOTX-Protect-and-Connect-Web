@@ -72,15 +72,15 @@
             <h2 class="modal-title">Secure Inquiry</h2>
             <p class="modal-desc">Direct line to GOTX Intelligence.</p>
 
-            <form class="gateway-form">
+            <form class="gateway-form" id="gatewayForm">
                 <div class="form-group">
-                    <input type="text" placeholder="Identity / Name" required>
+                    <input type="text" id="gw-name" placeholder="Identity / Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Secure Return Address" required>
+                    <input type="email" id="gw-email" placeholder="Secure Return Address" required>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Transmission Content..." required></textarea>
+                    <textarea id="gw-message" placeholder="Transmission Content..." required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Transmit</button>
             </form>
