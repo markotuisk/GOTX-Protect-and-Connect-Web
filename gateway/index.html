@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOTX | Select Service</title>
+    <link rel="stylesheet" href="assets/css/gateway.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <div class="radial-focal"></div>
+    <div class="circuit-overlay"></div>
+
+    <div class="gateway-container">
+        <header class="gateway-header">
+            <div class="logo-container">
+                <div class="logo-mark">
+                    <div class="floral-x"></div>
+                </div>
+                <span class="logo-wordmark">GOTX</span>
+            </div>
+
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                    <span class="mode-icon"></span>
+                </button>
+                <button class="gateway-contact-btn" id="openContact">Ask a Question</button>
+            </div>
+        </header>
+
+        <main class="gateway-choices">
+            <!-- 01: PROTECT -->
+            <a href="../index.html" class="choice-card protect">
+                <div class="choice-content">
+                    <h2 class="choice-title">PROTECT</h2>
+                    <p class="choice-desc">Competitive Intelligence & Technical Security. For high-stakes operations
+                        requiring the sovereignty of silence.</p>
+                    <div class="choice-meta">
+                        <i class="fa fa-map-marker-alt"></i> UK / EE / EU
+                    </div>
+                    <span class="choice-cta">Enter</span>
+                </div>
+            </a>
+
+            <!-- 02: CONNECT -->
+            <a href="../../GOTX Connect | Website/GOTX Connect/index.html" class="choice-card connect">
+                <div class="choice-content">
+                    <h2 class="choice-title">CONNECT</h2>
+                    <p class="choice-desc">Managed IT & Network Infrastructure. Premium technology relief for small
+                        businesses and home offices.</p>
+                    <div class="choice-meta">
+                        <i class="fa fa-map-marker-alt"></i> United Kingdom
+                    </div>
+                    <span class="choice-cta">Enter</span>
+                </div>
+            </a>
+
+        </main>
+    </div>
+
+    <div class="gateway-contact-overlay" id="contactOverlay">
+        <div class="gateway-contact-card">
+            <button class="close-modal" id="closeContact">&times;</button>
+            <h2 class="modal-title">Secure Inquiry</h2>
+            <p class="modal-desc">Direct line to GOTX Intelligence.</p>
+
+            <form class="gateway-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Identity / Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Secure Return Address" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Transmission Content..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Transmit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/gateway.js"></script>
+</body>
+
+</html>
